@@ -15,7 +15,7 @@ canvas.height = innerHeight;
 let gravity = 1.5;
 let gameOver = false;
 
-let jumpForce = -100;
+let jumpForce = -25;
 let distance = 0;
 
 //creating Player class (good if you want to expand more players in future)
@@ -41,19 +41,31 @@ class Player {
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
-    update() {
-        this.draw()
+    jump() {
+        if (!player.isJumping) {
+        this.velocity.y = jumpForce;
+        this.isJumping = true;
+        }
     }
-        // this.position.y += this.velocity.y
-        // this.position.x += this.speed;
-        // this.position.y -= this.speed * Math.sin(this.angle);
+    
+    update() {
+        
+        this.velocity.y += gravity; //apply gravity
+        this.position.y += this.velocity.y; //update player position
 
-        // To keep Player on ground
-        // if (this.position.y + this.height + this.velocity.y <= canvas.height)
-        //     this.velocity.y += gravity;
-        // else this.velocity.y = 0
+    
+        // Keep player on ground
+        if (this.position.y >= 680) {
+            this.position.y = 680;
+            this.velocity.y = 0;
+            this.isJumping = false;
+        }
+
+        this.draw();
+    }
     
 }
+
 
 //creating Lion class (good if you want to expand more players in future)
 class Lion {
@@ -101,7 +113,7 @@ class Bush {
     constructor() {
         this.position = {       //starting position of Lion
             x: 1500,
-            y: 680
+            y: 680,
         }
         this.velocity = {
             x: 0,
@@ -109,7 +121,7 @@ class Bush {
         }
         this.width = 30;        // height and width of object
         this.height = 30;
-        this.speed = -2;
+        this.speed = -3;
     }
 
     draw() {    //customise the Player
@@ -128,7 +140,7 @@ class Food {
     constructor() {
         this.position = {       //starting position of Lion
             x: 1500,
-            y: 580
+            y: 520,
         }
         this.velocity = {
             x: 0,
@@ -136,7 +148,7 @@ class Food {
         }
         this.width = 20;        // height and width of object
         this.height = 20;
-        this.speed = -2;
+        this.speed = -3;
     }
 
     draw() {    //customise the Player
@@ -189,29 +201,9 @@ let jeep = new Jeep()
 
 /*-------------------------------- Functions --------------------------------*/
 
-function jump() {
-    if (!player.isJumping) {
-    this.velocity.y = jumpForce;
-    this.isJumping = true;
-    }
-}
 
 //refreshing animation 
 function animate() {
-
-    // Apply gravity
-    player.velocity.y += gravity;
-
-    // Update player position
-    player.y += player.velocity.y;
-
-    // Ground collision check (example: ground at y=250)
-    if (player.y >= 680) {
-    player.y = 680;
-    player.isJumping = false;
-    player.velocity.y = 0;
-    }
-    
           
     c.clearRect(0, 0, canvas.width, canvas.height)  //clearing the whole canvas
     player.update(), lion.update(), bush.update(), food.update(), jeep.update()      //update player, lion and bush
@@ -219,14 +211,12 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-
 animate()
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 document.addEventListener('keydown', (jumping) => {
     if (jumping.code === 'Space') {
-        jump();
+        player.jump();
     }
 });
-
