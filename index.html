@@ -8,10 +8,32 @@
 
 <style type="text/css">
     body { margin:0; }
+
+    .message-screen {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Calibri", Calibri, monospace;
+    font-size: 70px;
+    text-align: center;
+    display: none;
+    color: black;
+    z-index: 10;
+    }
+    .message-screen small {
+        font-size: 20px;
+    }
 </style>
 
 <body>
+    
+    <div id="startScreen" class="message-screen">Escape the Lion<br><small>Press any key to start</small></div>
+    <div id="winScreen" class="message-screen">You won! You have escaped!<br><small>Press space bar to reset</small></div>
+    <div id="loseScreen" class="message-screen">You lost! The lion caught you!<br><small>Press space bar to reset</small></div>
+
     <canvas></canvas>
+
     <script src = "escapethelion.js"></script>
 </body>
 </html>
