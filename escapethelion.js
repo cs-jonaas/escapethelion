@@ -1,6 +1,3 @@
-/*-------------------------------- Variables --------------------------------*/
-
-
 /*------------------------ Cached Element References ------------------------*/
 const startScreen = document.getElementById('startScreen');
 
@@ -15,32 +12,46 @@ const c = canvas.getContext('2d')
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
+let background = new Image();
+background.src = "https://cdna.artstation.com/p/assets/images/images/027/967/652/large/gabriel-gabas-x-pmwxv17xss1tctdo6o1-1280.jpg?1593097332";
+
+/*-------------------------------- Variables --------------------------------*/
 let gameState = 'start';  
 let gameMessage = "";
 let gravity = 1.5;
 
-let jumpForce = -23;
+let jumpForce = -25;
 let distance = 0;
+let score = 0;
+
 
 //creating Player class (good if you want to expand more players in future)
 class Player {
     constructor() {
         this.position = {   //starting position of Player
             x: 600,
-            y: 680
+            y: 0
         }
         this.velocity = {
             x: 0,
             y: 0
         }
-        this.width = 30     //height and width of object
-        this.height = 30
+        this.width = 60     //height and width of object
+        this.height = 70
+
     }
         
 
     draw() {    //customise the Player
-        c.fillStyle = 'black'
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+        
+        this.image = new Image()
+        this.image.src = "./images/manrun1.png"
+
+        c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+        
+        // c.fillStyle = "black"
+        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
+
     }
 
     jump() {
@@ -55,10 +66,9 @@ class Player {
         this.velocity.y += gravity; //apply gravity
         this.position.y += this.velocity.y; //update player position
 
-    
         // Keep player on ground
-        if (this.position.y >= 680) {
-            this.position.y = 680;
+        if (this.position.y >= 620) {
+            this.position.y = 620;
             this.velocity.y = 0;
             this.isJumping = false;
         }
@@ -73,27 +83,33 @@ class Player {
 class Lion {
     constructor() {
         this.position = {       //starting position of Lion
-            x: 50,
-            y: 680
+            x: 0,
+            y: 640
         }
         this.velocity = {
             x: 0,
             y: 0
         }
-        this.width = 40;        // height and width of object
-        this.height = 30;
-        this.speed = 0.5;       // speed of object
+        this.width = 70;        // height and width of object
+        this.height = 50;
+        this.speed = 0.7;       // speed of object
         // this.angle = 0;
     }
 
-    draw() {    //customise the Player
-        c.fillStyle = 'orange'
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    draw() {    //customise the Lion
+
+        this.image = new Image()
+        this.image.src = "./images/lion.png"
+
+        c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+
+        // c.fillStyle = "orange"
+        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
     update() {
         
-        this.position.y += this.velocity.y
+        // this.position.y += this.velocity.y
         this.position.x += this.speed;
         
     }
@@ -105,14 +121,44 @@ class Lion {
 class Bush {
     constructor() {
         this.position = {       
-            x: canvas.width + Math.random() * 300, // Spawn ahead with randomness
-            y: 680 
+            x: 1500, //canvas.width + Math.random() * 300, // Spawn ahead with randomness
+            y: 650 
         }
 
-        // this.position = {       //starting position of Lion
-        //     x: 1500,
-        //     y: 680,
-        // }
+        this.velocity = {
+            x: 0,
+            y: 0
+        }
+        this.width = 40;        
+        this.height = 40;
+        this.speed = -4;
+
+        this.collided = false;
+    }
+
+    draw() {    //customise the Bush
+
+        this.image = new Image()
+        this.image.src = "./images/bush.png"
+
+        c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+
+        // c.fillStyle = "green"
+        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
+
+    update() { 
+        // this.position.y += this.velocity.y
+        this.position.x += this.speed;
+    }
+}
+
+class Food {
+    constructor() {
+        this.position = {       //starting position of Food
+            x: 1500,
+            y: 500,
+        }
         this.velocity = {
             x: 0,
             y: 0
@@ -124,63 +170,47 @@ class Bush {
         this.collided = false;
     }
 
-    draw() {    //customise the Player
-        c.fillStyle = 'green'
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    draw() {    //customise the Food
+
+        this.image = new Image()
+        this.image.src = "./images/meat.png"
+
+        c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+
+        // c.fillStyle = 'red'
+        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
     update() {
-        this.position.y += this.velocity.y
-        this.position.x += this.speed;
-    }
-}
-
-class Food {
-    constructor() {
-        this.position = {       //starting position of Lion
-            x: 1500,
-            y: 520,
-        }
-        this.velocity = {
-            x: 0,
-            y: 0
-        }
-        this.width = 20;        // height and width of object
-        this.height = 20;
-        this.speed = -4;
-
-        this.collided = false;
-    }
-
-    draw() {    //customise the Player
-        c.fillStyle = 'red'
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
-    }
-
-    update() {
-        this.position.y += this.velocity.y
+        // this.position.y += this.velocity.y
         this.position.x += this.speed;
     }
 }
 
 class Jeep {
     constructor() {
-        this.position = {       //starting position of Lion
-            x: 5000,
-            y: 670
+        this.position = {       //starting position of Jeep
+            x: 7000,
+            y: 620
         }
         this.velocity = {
             x: 0,
             y: 0
         }
-        this.width = 80;        // height and width of object
-        this.height = 40;
+        this.width = 140 ;        // height and width of object
+        this.height = 70;
         this.speed = -3;
     }
 
-    draw() {    //customise the Player
-        c.fillStyle = 'brown'
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    draw() {    //customise the Jeep
+
+        this.image = new Image()
+        this.image.src = "./images/jeep.png"
+
+        c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+
+        // c.fillStyle = "brown"
+        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
     update() {
@@ -203,15 +233,6 @@ let foodArray = [food];
 let lionSpeed = lion.speed;
 
 /*-------------------------------- Functions --------------------------------*/
-// function checkCollision() {
-//     bushArray.forEach((bush) => {
-//         if (collisonDetect(player, bush)) {
-//             lion.speed += 0.2;
-//             console.log("Lion is faster!");
-    
-//         }
-//     });
-// }
 
 function checkCollision() {
     // Player-Bush checkCollision
@@ -219,13 +240,13 @@ function checkCollision() {
         if (bush.collided === false) {
             if (checkIfCollide(player, bush)) {
                 bush.collided = true;
-                lion.speed += 0.05;
+                lion.speed += 0.1;
                 console.log("Lion got faster because player hit a bush");
                 
                 setTimeout(() => {
                     lion.speed = lionSpeed;
                     console.log("Lion speed reset to original");
-                }, 500);
+                }, 750);
                 // check the collision if it has already collided
                 return true;
     
@@ -235,15 +256,8 @@ function checkCollision() {
         }
     }
 
-    // Iterative methods
-    // for (let i = 0; i < 5; i++)
-    // for (let bush in bushArray)
-    // while (i < 5) { i++ }
-    // bushArray.forEach((bush) => {})
-
     
     // Player-Food checkCollision
-
     
     foodArray.forEach((food) => {
         if (food.collided === false) {
@@ -256,7 +270,7 @@ function checkCollision() {
                 setTimeout(() => {
                     lion.speed = lionSpeed;
                     console.log("Lion speed reset to original");
-                }, 750);
+                }, 1000);
                             
             } else {
                 console.log("No collision with food yet");
@@ -267,17 +281,15 @@ function checkCollision() {
 
     foodArray = foodArray.filter((food) => { return food.collided === false });
     
-
     // Player-Lion checkCollision
     if (checkIfCollide(player, lion)) {
         gameState = "lost";
-        console.log("Game Over! The lion caught you!")
 
     }
 
     if (checkIfCollide(player, jeep)) {
         gameState = "won";
-        console.log("You Win! You have escaped!")
+        
     }
 
 }
@@ -321,25 +333,27 @@ let frames = 0;
 function animate() {
     c.clearRect(0, 0, canvas.width, canvas.height)  //clearing the whole canvas
     
+    c.drawImage(background, 0, 0, canvas.width, canvas.height);
+
     if (gameState === 'start') {
-        c.clearRect(0, 0, canvas.width, canvas.height);
+        
         startScreen.style.display = 'block';
-        winScreen.style.display = 'none';
-        loseScreen.style.display = 'none';
+
         return;
+        
     }
     
     if (gameState === 'lost') {
-        startScreen.style.display = 'none';
-        winScreen.style.display = 'none';
+        
         loseScreen.style.display = 'block';
+
         return;
     }
     
     if (gameState === 'won') {
-        startScreen.style.display = 'none';
+
         winScreen.style.display = 'block';
-        loseScreen.style.display = 'none';
+
         return;
     }    
     
@@ -360,22 +374,19 @@ function animate() {
     frames++;
 
 // Every 100 frames, spawn either a bush or food
-    if (frames % getRandomIntInclusive(50, 100) === 0) {
-    const rand = Math.random();
-    
-    if (rand < 0.4) {
-        bushArray.push(new Bush());  // 30% chance
-    } else {
-        foodArray.push(new Food());  // 70% chance
-        
-    }
+    if (frames % randomNumber === 0) {
+        const rand = Math.random();
 
-    // bushArray.push(new Bush(rand = 0.4)); 
-
-    // foodArray.push(new Food(rand = 0.4)); 
+            if (rand < 0.4) {
+                    bushArray.push(new Bush());  
+                } else {
+                    foodArray.push(new Food());      
+            }
 
     }
 
+    let dx = jeep.position.x - player.position.x;
+    score = Math.max(0, Math.floor(dx));
 
     //Check Collision
     checkCollision()
@@ -394,21 +405,23 @@ function animate() {
 
     jeep.draw()
 
+    c.fillStyle = "black";
+    c.font = "24px Arial";
+    c.fillText("Distance to Jeep: " + score + "m", 30, 50);
+
     requestAnimationFrame(animate);
+
 }
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-  
-  let randomNumber = getRandomIntInclusive(50, 100);
-  console.log(randomNumber);
-  
+}
 
-animate()
+let randomNumber = getRandomIntInclusive(50, 100);
 
+animate() 
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -418,25 +431,21 @@ document.addEventListener('keydown', (jumping) => {
     }
 });
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', (j) => {
     if (gameState === 'start') {
         gameState = 'playing';
         resetGame();  
         animate();
+
     } else if (gameState === 'lost' || gameState === 'won') {
-        if (e.code === 'Space') {
+        if (j.code === 'Space') {
             resetGame();
             gameState = 'start';
             animate();
         }
     } else if (gameState === 'playing') {
-        if (e.code === 'Space') {
+        if (j.code === 'Space') {
             player.jump();
         }
     }
 });
-
-
-
-
-// timer/distance

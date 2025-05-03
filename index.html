@@ -3,28 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="escape.css">
+
     <title>Escapethelion</title>
 </head>
-
-<style type="text/css">
-    body { margin:0; }
-
-    .message-screen {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: "Calibri", Calibri, monospace;
-    font-size: 70px;
-    text-align: center;
-    display: none;
-    color: black;
-    z-index: 10;
-    }
-    .message-screen small {
-        font-size: 20px;
-    }
-</style>
 
 <body>
     
@@ -32,7 +17,7 @@
     <div id="winScreen" class="message-screen">You won! You have escaped!<br><small>Press space bar to reset</small></div>
     <div id="loseScreen" class="message-screen">You lost! The lion caught you!<br><small>Press space bar to reset</small></div>
 
-    <canvas></canvas>
+    <canvas id="board"></canvas>
 
     <script src = "escapethelion.js"></script>
 </body>
