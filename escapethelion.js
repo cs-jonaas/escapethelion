@@ -30,7 +30,7 @@ class Player {
     constructor() {
         this.position = {   //starting position of Player
             x: 600,
-            y: 0
+            y: 620
         }
         this.velocity = {
             x: 0,
@@ -337,23 +337,24 @@ function animate() {
 
     if (gameState === 'start') {
         
-        startScreen.style.display = 'block';
-
+        startScreen.style.display = 'block';    //show start screen
+        loseScreen.style.display = 'none';      //does not show lost screen
+        winScreen.style.display = 'none';       //does not show win screen
         return;
         
     }
     
     if (gameState === 'lost') {
-        
-        loseScreen.style.display = 'block';
-
+        startScreen.style.display = 'none';     //does not show start screen
+        loseScreen.style.display = 'block';     //show lost screen
+        winScreen.style.display = 'none';       //does not show win screen
         return;
     }
     
     if (gameState === 'won') {
-
-        winScreen.style.display = 'block';
-
+        startScreen.style.display = 'none';     //does not show start screen
+        loseScreen.style.display = 'none';      //does not show lost screen
+        winScreen.style.display = 'block';      //show win screen
         return;
     }    
     
@@ -405,8 +406,7 @@ function animate() {
 
     jeep.draw()
 
-    c.fillStyle = "black";
-    c.font = "24px Arial";
+    c.font = "24px Pixelify Sans";
     c.fillText("Distance to Jeep: " + score + "m", 30, 50);
 
     requestAnimationFrame(animate);

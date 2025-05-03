@@ -1,13 +1,11 @@
 
 body { 
     margin:0; 
-
-    /* .pixelify-sans {
-        font-family: "Pixelify Sans", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 700;
-        font-style: normal;
-    } */
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    /* font-size: 1.5rem; */
+    font-style: normal;
 }
 
 .message-screen {
