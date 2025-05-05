@@ -1,9 +1,9 @@
 /*------------------------ Cached Element References ------------------------*/
-const startScreen = document.getElementById('startScreen');
+const startScreen = document.getElementById('startScreen'); //
 
-const winScreen = document.getElementById('winScreen');
+const winScreen = document.getElementById('winScreen');     //
 
-const loseScreen = document.getElementById('loseScreen');
+const loseScreen = document.getElementById('loseScreen');   //
 
 /*--------------------------------- Canvas ----------------------------------*/
 const canvas = document.querySelector('canvas')
@@ -48,16 +48,13 @@ class Player {
         this.image.src = "./images/manrun1.png"
 
         c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
-        
-        // c.fillStyle = "black"
-        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
     }
 
     jump() {
-        if (!player.isJumping) {
+        if (!player.isJumping) {        //checks if player is jumping
         this.velocity.y = jumpForce;
-        this.isJumping = true;
+        this.isJumping = true;          //player is jumping so cannot double jump
         }
     }
     
@@ -67,10 +64,10 @@ class Player {
         this.position.y += this.velocity.y; //update player position
 
         // Keep player on ground
-        if (this.position.y >= 620) {
-            this.position.y = 620;
-            this.velocity.y = 0;
-            this.isJumping = false;
+        if (this.position.y >= 620) {   //make sure player is on ground
+            this.position.y = 620;      
+            this.velocity.y = 0;        
+            this.isJumping = false;     //player not jumping so can jump again
         }
         
         
@@ -93,7 +90,7 @@ class Lion {
         this.width = 70;        // height and width of object
         this.height = 50;
         this.speed = 0.7;       // speed of object
-        // this.angle = 0;
+    
     }
 
     draw() {    //customise the Lion
@@ -103,13 +100,9 @@ class Lion {
 
         c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
 
-        // c.fillStyle = "orange"
-        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
     update() {
-        
-        // this.position.y += this.velocity.y
         this.position.x += this.speed;
         
     }
@@ -143,12 +136,9 @@ class Bush {
 
         c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
 
-        // c.fillStyle = "green"
-        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
     update() { 
-        // this.position.y += this.velocity.y
         this.position.x += this.speed;
     }
 }
@@ -177,12 +167,9 @@ class Food {
 
         c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
 
-        // c.fillStyle = 'red'
-        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
     update() {
-        // this.position.y += this.velocity.y
         this.position.x += this.speed;
     }
 }
@@ -190,7 +177,7 @@ class Food {
 class Jeep {
     constructor() {
         this.position = {       //starting position of Jeep
-            x: 7000,
+            x: 6620,
             y: 620
         }
         this.velocity = {
@@ -209,12 +196,9 @@ class Jeep {
 
         c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
 
-        // c.fillStyle = "brown"
-        // c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
     update() {
-        this.position.y += this.velocity.y
         this.position.x += this.speed;
     }
 }
@@ -240,18 +224,8 @@ function checkCollision() {
         if (bush.collided === false) {
             if (checkIfCollide(player, bush)) {
                 bush.collided = true;
-                lion.speed += 0.1;
-                console.log("Lion got faster because player hit a bush");
-                
-                setTimeout(() => {
-                    lion.speed = lionSpeed;
-                    console.log("Lion speed reset to original");
-                }, 750);
-                // check the collision if it has already collided
-                return true;
+                lion.speed += 0.01;
     
-            } else {
-                console.log("No collision with bush yet");
             }
         }
     }
@@ -264,16 +238,11 @@ function checkCollision() {
             if (checkIfCollide(player, food)) {
                 food.collided = true;
                 lion.speed += -1.5;
-                
-                console.log("Lion is slower.");
     
                 setTimeout(() => {
                     lion.speed = lionSpeed;
-                    console.log("Lion speed reset to original");
                 }, 1000);
                             
-            } else {
-                console.log("No collision with food yet");
             }
         }
         
@@ -333,6 +302,11 @@ let frames = 0;
 function animate() {
     c.clearRect(0, 0, canvas.width, canvas.height)  //clearing the whole canvas
     
+    //input this code as background imgae is not showing upon browser upload
+    background.onload = function() {
+        c.drawImage(background, 0, 0, canvas.width, canvas.height);    
+    }
+
     c.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     if (gameState === 'start') {
