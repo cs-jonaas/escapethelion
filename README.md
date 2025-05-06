@@ -1,6 +1,6 @@
 # 🦁 Escape the Lion Game
 
-## 🎮 Introduction
+## Introduction
 
 **Escape the Lion** is a thrilling side-scrolling running game where you must help a poacher escape a fast-approaching lion and reach the jeep to survive. 
 
@@ -10,7 +10,7 @@ During the chase:
 
 Can you make it to the jeep before getting caught?
 
-👉 [**🎮 Play the Demo**]((https://cs-jonaas.github.io/escapethelion/))  
+[**🎮 Play the Demo**]((https://cs-jonaas.github.io/escapethelion/))  
 
 ---
 
@@ -20,35 +20,35 @@ Can you make it to the jeep before getting caught?
 When the game loads, a start screen appears with the game title.  
 Press **any key** to begin.
 
-![Start Screen](escapethelion/images/ETL-start-screen.png)
+![Start Screen](./escapethelion/images/ETL-start-screen.png)
 
 ---
 
 ### In-Game Action  
 Jump over bushes and leap to grab food. Stay ahead of the lion!
 
-![Gameplay 1](escapethelion/images/ETL-gameplay.png)  
-![Gameplay 2](escapethelion/images/ETL-gameplay2.png)
+![Gameplay 1](./escapethelion/images/ETL-gameplay.png)  
+![Gameplay 2](./escapethelion/images/ETL-gameplay2.png)
 
 ---
 
 ### Winning the Game  
 Reach the jeep before the lion catches you!
 
-![Win Scene 1](escapethelion/images/ETL-win-play.png)  
-![Win Scene 2](escapethelion/images/ETL-win-screen.png)
+![Win Scene 1](./escapethelion/images/ETL-win-play.png)  
+![Win Scene 2](./escapethelion/images/ETL-win-screen.png)
 
 ---
 
 ### Losing the Game  
 If the lion catches up, the game ends.
 
-![Lose Scene 1](escapethelion/images/ETL-lose-play.png)  
-![Lose Scene 2](escapethelion/images/ETL-lose-screen.png)
+![Lose Scene 1](./escapethelion/images/ETL-lose-play.png)  
+![Lose Scene 2](./escapethelion/images/ETL-lose-screen.png)
 
 ---
 
-## 🧩 Challenging Features
+## ⚠️ Challenging Features
 
 A key challenge in building this game was implementing **collision detection** between the player and multiple objects — each with a unique outcome:
 
@@ -57,7 +57,7 @@ A key challenge in building this game was implementing **collision detection** b
 
 ---
 
-## 🚀 Future Implementations
+## ⚙️ Future Implementations
 
 1. **Character Animation**
    - Add running animation by alternating images of the lion and player.
