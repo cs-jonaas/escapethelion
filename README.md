@@ -27,6 +27,7 @@ Press **any key** to begin.
 ### In-Game Action  
 Jump over bushes and leap to grab food. Stay ahead of the lion!
 
+![Gameplay 1](Images/lion.png)
 ![Gameplay 1](Images/ETL-gameplay.png)  
 ![Gameplay 2](Images/ETL-gameplay2.png)
 
