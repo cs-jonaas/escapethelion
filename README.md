@@ -20,31 +20,31 @@ Can you make it to the jeep before getting caught?
 When the game loads, a start screen appears with the game title.  
 Press **any key** to begin.
 
-![Start Screen](./escapethelion/Images/ETL-Start-Screen.png)
+![Start Screen](Images/ETL-Start-Screen.png)
 
 ---
 
 ### In-Game Action  
 Jump over bushes and leap to grab food. Stay ahead of the lion!
 
-![Gameplay 1](./escapethelion/Images/ETL-gameplay.png)  
-![Gameplay 2](./escapethelion/Images/ETL-gameplay2.png)
+![Gameplay 1](Images/ETL-gameplay.png)  
+![Gameplay 2](Images/ETL-gameplay2.png)
 
 ---
 
 ### Winning the Game  
 Reach the jeep before the lion catches you!
 
-![Win Scene 1](./escapethelion/Images/ETL-win-play.png)  
-![Win Scene 2](./escapethelion/Images/ETL-win-screen.png)
+![Win Scene 1](Images/ETL-win-play.png)  
+![Win Scene 2](Images/ETL-win-screen.png)
 
 ---
 
 ### Losing the Game  
 If the lion catches up, the game ends.
 
-![Lose Scene 1](./escapethelion/Images/ETL-lose-play.png)  
-![Lose Scene 2](./escapethelion/Images/ETL-lose-screen.png)
+![Lose Scene 1](Images/ETL-lose-play.png)  
+![Lose Scene 2](Images/ETL-lose-screen.png)
 
 ---
 
