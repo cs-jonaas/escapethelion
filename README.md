@@ -10,7 +10,7 @@ During the chase:
 
 Can you make it to the jeep before getting caught?
 
-[**🎮 Play the Demo**]((https://cs-jonaas.github.io/escapethelion/))  
+[**🎮 Play the Demo**](https://cs-jonaas.github.io/escapethelion/)
 
 ---
 
