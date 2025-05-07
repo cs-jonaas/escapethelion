@@ -35,16 +35,16 @@ Jump over bushes and leap to grab food. Stay ahead of the lion!
 ### Winning the Game  
 Reach the jeep before the lion catches you!
 
-![Win Scene 1](ETL-win-play.png)  
-![Win Scene 2](ETL-win-screen.png)
+![Win Scene 1](ETL-Win-play.png)  
+![Win Scene 2](ETL-Win-Screen.png)
 
 ---
 
 ### Losing the Game  
 If the lion catches up, the game ends.
 
-![Lose Scene 1](ETL-lose-play.png)  
-![Lose Scene 2](ETL-lose-screen.png)
+![Lose Scene 1](ETL-Lose-play.png)  
+![Lose Scene 2](ETL-Lose-Screen.png)
 
 ---
 
