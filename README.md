@@ -52,8 +52,8 @@ If the lion catches up, the game ends.
 
 A key challenge in building this game was implementing **collision detection** between the player and multiple objects — each with a unique outcome:
 
-(CC-function.png)
-(CIC-function.png)
+![Check Collision](CC-function.png)
+![Check If Collide](CIC-function.png)
 
 ---
 
