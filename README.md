@@ -27,24 +27,24 @@ Press **any key** to begin.
 ### In-Game Action  
 Jump over bushes and leap to grab food. Stay ahead of the lion!
 
-![Gameplay 1](images/ETL-gameplay.png)  
-![Gameplay 2](images/ETL-gameplay2.png)
+![Gameplay 1](ETL-gameplay.png)  
+![Gameplay 2](ETL-gameplay2.png)
 
 ---
 
 ### Winning the Game  
 Reach the jeep before the lion catches you!
 
-![Win Scene 1](images/ETL-win-play.png)  
-![Win Scene 2](images/ETL-win-screen.png)
+![Win Scene 1](ETL-win-play.png)  
+![Win Scene 2](ETL-win-screen.png)
 
 ---
 
 ### Losing the Game  
 If the lion catches up, the game ends.
 
-![Lose Scene 1](images/ETL-lose-play.png)  
-![Lose Scene 2](images/ETL-lose-screen.png)
+![Lose Scene 1](ETL-lose-play.png)  
+![Lose Scene 2](ETL-lose-screen.png)
 
 ---
 
