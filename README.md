@@ -20,14 +20,13 @@ Can you make it to the jeep before getting caught?
 When the game loads, a start screen appears with the game title.  
 Press **any key** to begin.
 
-![Start Screen](images/ETL-Start-Screen.png)
+![Start Screen](ETL-Start-Screen.png)
 
 ---
 
 ### In-Game Action  
 Jump over bushes and leap to grab food. Stay ahead of the lion!
 
-![Gameplay 1](images/lion.png)
 ![Gameplay 1](images/ETL-gameplay.png)  
 ![Gameplay 2](images/ETL-gameplay2.png)
 
