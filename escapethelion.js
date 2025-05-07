@@ -9,6 +9,7 @@ const loseScreen = document.getElementById('loseScreen');   //
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
+//Setting Canvas size = Browser window size
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
@@ -87,8 +88,8 @@ class Lion {
             x: 0,
             y: 0
         }
-        this.width = 70;        // height and width of object
-        this.height = 50;
+        this.width = 80;        // height and width of object
+        this.height = 60;
         this.speed = 0.7;       // speed of object
     
     }
@@ -108,9 +109,6 @@ class Lion {
     }
 }
 
-// let bushArray = [];
-
-
 class Bush {
     constructor() {
         this.position = {       
@@ -122,8 +120,8 @@ class Bush {
             x: 0,
             y: 0
         }
-        this.width = 40;        
-        this.height = 40;
+        this.width = 50;        
+        this.height = 50;
         this.speed = -4;
 
         this.collided = false;
@@ -184,8 +182,8 @@ class Jeep {
             x: 0,
             y: 0
         }
-        this.width = 140 ;        // height and width of object
-        this.height = 70;
+        this.width = 150 ;        // height and width of object
+        this.height = 80;
         this.speed = -3;
     }
 
@@ -220,7 +218,7 @@ let lionSpeed = lion.speed;
 
 function checkCollision() {
     // Player-Bush checkCollision
-    for (let bush of bushArray) {
+    bushArray.forEach((bush) => {
         if (bush.collided === false) {
             if (checkIfCollide(player, bush)) {
                 bush.collided = true;
@@ -228,11 +226,9 @@ function checkCollision() {
     
             }
         }
-    }
+    })
 
-    
     // Player-Food checkCollision
-    
     foodArray.forEach((food) => {
         if (food.collided === false) {
             if (checkIfCollide(player, food)) {
@@ -352,6 +348,7 @@ function animate() {
     if (frames % randomNumber === 0) {
         const rand = Math.random();
 
+            //for every 50 - 100 frames, bush will randomly spawn 40% of the time and food will spawn 60%
             if (rand < 0.4) {
                     bushArray.push(new Bush());  
                 } else {
@@ -360,8 +357,9 @@ function animate() {
 
     }
 
+    //to show the distance of the man to the jeep
     let dx = jeep.position.x - player.position.x;
-    score = Math.max(0, Math.floor(dx));
+    score = Math.max(0, Math.floor(dx));    //make sure the number doesn't go -ve and rounding the distance to integer
 
     //Check Collision
     checkCollision()
@@ -388,9 +386,9 @@ function animate() {
 }
 
 function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
+    min = Math.ceil(min);       
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min);   //calculates a random number between 0 - 1 based on the min and max given
 }
 
 let randomNumber = getRandomIntInclusive(50, 100);
@@ -405,14 +403,14 @@ document.addEventListener('keydown', (jumping) => {
     }
 });
 
-document.addEventListener('keydown', (j) => {
+document.addEventListener('keydown', (e) => {
     if (gameState === 'start') {
         gameState = 'playing';
         resetGame();  
         animate();
 
     } else if (gameState === 'lost' || gameState === 'won') {
-        if (j.code === 'Space') {
+        if (e.code === 'Space') {
             resetGame();
             gameState = 'start';
             animate();
