@@ -52,8 +52,8 @@ If the lion catches up, the game ends.
 
 A key challenge in building this game was implementing **collision detection** between the player and multiple objects — each with a unique outcome:
 
-(escapethelion/images/cc-function.png)
-(escapethelion/images/cic-function.png)
+(CC-function.png)
+(CIC-function.png)
 
 ---
 
